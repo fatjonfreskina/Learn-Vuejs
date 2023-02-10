@@ -1,6 +1,6 @@
 # Learn-Vuejs
 
-By invoking the Vue class constructor with the new keyword, we create a new instance of the Vue class which we name app. The Vue constructor can set many properties on our Vue app when it is called. However, unlike many constructors, the Vue class does not take each of these properties as separate arguments. Rather, it only takes one argument.
+When creating a Vue app, you can use the Vue class constructor and the "new" keyword to create a new instance of the Vue class, which can have many properties set through the constructor's single argument.
 
 ```js
 // app.js
@@ -11,11 +11,7 @@ const app = new Vue({
 
 ## el
 
-The Vue constructor takes in only one object, called the options object. Each piece of information the Vue app needs to function is added to the options object as a key-value pair. This means that developers can easily update or add information in the Vue app by just looking for the correct key in the options object.
-
-We need to specify to our Vue app which portion of our HTML we want to gain access to our Vue app’s logic.
-
-We do this by adding a key-value pair to the Vue app’s options object. We add a key called el, standing for **HTML element**, with a value of a CSS selector as a string that will target an element in our HTML and give it access to our Vue app’s functionality.
+The Vue constructor only accepts a single argument, which is the options object. The options object contains key-value pairs that provide information to the Vue app. To specify which HTML element the Vue app will interact with, the options object includes a key "el" (representing HTML element) with a value that is a CSS selector string that targets the desired HTML element. This allows the Vue app's logic to access the specified HTML element.
 
 ```js
 // app.js
