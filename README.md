@@ -84,7 +84,7 @@ Another complex, common front-end need is to render an array of items identicall
 </ul>
 ```
 
-One more super cool directive is **v-model**. v-model can be added to any form field and hooked up to our Vue app’s data. Modifying the form field will then automatically modify the specified Vue app data!
+One more super cool directive is **v-model**. v-model can be added to any **form field** and hooked up to our Vue app’s data. Modifying the form field will then automatically modify the specified Vue app data!
 
 ```jsx
 <input v-model="username" />
@@ -203,7 +203,7 @@ const app = new Vue({
 
 ```html
 <!--index.html--> 
-<div id=“app”>
+<div id="app"> 
   <p>You have studied for {{ hoursStudied }} hours. You have {{ languageLevel }}-level mastery.</p>
   <span>Change Level:</span>
   <select v-model="languageLevel">
@@ -246,9 +246,11 @@ In this example, we want to set the number of hours studied to 0 whenever the us
 
 This functionality is not a computed value because we do not actually need to continually use this information to compute a new dynamic property: we just need to update existing properties whenever the change happens.
 
-The value of watch is an object containing all of the properties to watch. The keys of this object are the names of the properties to watch for changes and the values are functions to run whenever the corresponding properties change. These functions take two parameters: the new value of that property and the previous value of that property.
+The value of watch is an object containing all of the properties to watch. **The keys of this object are the names of the properties to watch for changes and the values are functions to run whenever the corresponding properties change**. These functions take two parameters: the new value of that property and the previous value of that property.
 
 **Note**: It may seem like you could use watch in many instances where you could use computed. The Vue team encourages developers to use computed in these situations as **computed values update more efficiently than watched values**.
+
+> If possible : use computed.
 
 ### Instance Methods
 
@@ -274,3 +276,6 @@ const app = new Vue({
 
 TODO: UNDERSTAND COMPUTED AND WATCH.
 TODO: copy the project section by section in this repo
+
+## Vue Forms
+
