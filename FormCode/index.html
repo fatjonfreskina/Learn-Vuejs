@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Ticketbox</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Petit+Formal+Script" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
@@ -23,29 +22,31 @@
       <div><em>Email</em>: <span>{{ email }}</span></div>
       <div><em>Ticket Quantity</em>: <span>{{ ticketQuantity }}</span></div>
       <div><em>Special Requests</em>: <span>{{ specialRequests }}</span></div>
+      <div><em>Referrals</em>: <span>{{ referrals }}</span></div>
+      <div><em>Purchase Agreement Signed</em>: <span>{{ purchaseAgreementSigned }}</span></div>
     </div>
     
-    <form>
+    <form @reset="resetFields" @submit.prevent="submitForm">
       <div class="form-row">
         <div class="form-field">
           <label for="first-name">First Name</label>
-          <input type="text" id="first-name" v-model="firstName"/>
+          <input type="text" id="first-name" v-model.trim="firstName"/>
         </div>
         <div class="form-field">
           <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" v-model="lastName"/>
+          <input type="text" id="last-name" v-model.trim="lastName"/>
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
           <label for="email">Email</label>
-          <input type="text" id="email" v-model="email"/>
+          <input type="text" id="email" v-model.trim="email"/>
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
           <label for="ticket-quantity">Ticket Quantity</label>
-          <select id="ticket-quantity" v-model="ticketQuantity">
+          <select id="ticket-quantity" v-model.number="ticketQuantity">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -68,28 +69,28 @@
         <fieldset>
           <legend>How did you hear about this event?</legend>
           <div>
-            <input type="checkbox" id="friend" value="friend">
+            <input type="checkbox" id="friend" value="friend" v-model="referrals">
             <label for="friend">Friend</label>
           </div>
           <div>
-            <input type="checkbox" id="publication" value="publication">
+            <input type="checkbox" id="publication" value="publication" v-model="referrals">
             <label for="publication">Publication</label>
           </div>
           <div>
-            <input type="checkbox" id="social-media" value="social">
+            <input type="checkbox" id="social-media" value="social" v-model="referrals">
             <label for="social-media">Social Media</label>
           </div>
         </fieldset>
       </div>
       <div class="form-row vertical">
         <label for="requests">Special requests</label>
-        <textarea id="requests" v-model="specialRequests"></textarea>
+        <textarea id="requests" v-model.trim="specialRequests"></textarea>
       </div>
       <div class="form-row vertical agreement checkbox">
         <fieldset>
           <legend>Purchase Agreement</legend>
           <p>I, {{ fullName }}, wish to buy {{ ticketDescription }}. I understand that all ticket sales are final.</p>
-          <input type="checkbox" name="agreement" id="agree" />
+          <input type="checkbox" name="agreement" id="agree" v-model="purchaseAgreementSigned" />
           <label for="agree">I Agree</label>
         </fieldset>
       </div>
@@ -99,7 +100,7 @@
       </div>
       <div>
         <button type="reset" class="reset">Reset</button>
-        <button type="submit">Confirm Tickets</button>
+        <button type="submit" v-bind:disabled="!formIsValid">Confirm Tickets</button>
       </div>
     </form>
   </div>
