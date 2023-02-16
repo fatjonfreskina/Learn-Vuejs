@@ -1,10 +1,8 @@
-# In this lesson, we will:
+In this lesson, we will:
 
 - Bind all of the form fields to our Vue data
 - Implement the functionality to reset and submit our form and clean up our form data
 - Implement form validation to ensure users are using our form as expected
-
-## Examples
 
 ### Radio Button Bindings
 
@@ -33,7 +31,7 @@ const app = new Vue({
 });
 ```
 
-## Checkboxes
+### Checkboxes
 
 Unlike radio buttons, previous selections won’t be unselected when new selections are added. Instead, users can select all of the relevant checkboxes they’d like.
 
@@ -66,7 +64,7 @@ const app = new Vue({
 });
 ```
 
-## Boolean checkbox
+### Boolean checkbox
 
 A single checkbox, however, can be represented by a boolean value. If the checkbox is checked, the value is true — if the value is unchecked, the value is false.
 
@@ -82,7 +80,7 @@ const app = new Vue({
 });
 ```
 
-## Form event handlers
+### Form event handlers
 
 As we saw briefly in Introduction to Vue, Vue uses the `v-on` directive to add event handlers. Event handlers will respond to the specified event by calling the specified method.
 
@@ -113,7 +111,7 @@ Why using @reset when html already has the reset button type?
 - Consistency with vue: keep yoor logic consistent with other vue patterns
 - Clear separation of concerns: more maintanable in the future
 
-## Form event modifiers
+### Form event modifiers
 
 In order to ensure a great web experience, browsers set up default actions to perform in response to events. You saw this in the previous exercise when your app refreshed the page in response to a form submit event.
 
@@ -131,7 +129,7 @@ Example
 
 In this example, we added the prevent modifier to a form submit event handler directive. This will automatically call Event.preventDefault() whenever our event handler is triggered — in the case of form submit events, this will prevent the page from reloading.
 
-## Input modifiers
+### Input modifiers
 
 We can use modifiers to make our form fields even more versatile.
 
@@ -141,7 +139,7 @@ Vue offers the following three modifiers for v-model:
 - .trim — removes whitespace from the beginning and ends of the form field value
 - .lazy — only updates data values when change events are triggered (often when a user moves away from the form field rather than after every keystroke)
 
-## Form Validation
+### Form Validation
 
 There are many ways to implement form validation in Vue — we will cover one of the more common methods.
 
@@ -167,5 +165,4 @@ Here we:
 - We use the v-bind directive to set the value of the disabled property on a “Submit” button to the value of a computed property called formIsValid
 - formIsValid will contain some logic that checks the values stored on the Vue app and returns a boolean representing whether or not the form is valid
 - If the form is valid, formIsValid will return true and the disabled property will not be present on the “Submit” button, keeping the button enabled
-- If the form is not valid, formIsValid will return false and the button will be disabled
-
+- If the form is not valid, formIsValid will return false and the button will be disabled.
