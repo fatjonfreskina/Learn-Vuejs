@@ -478,7 +478,7 @@ const app = new Vue({
 });
 ```
 
-Note in the example that if we want to set a value for a hyphenated CSS property, such as font-size, we need to put the property name in quotes in order to construct a valid JavaScript object.
+Note in the example that if we want to set a value for a hyphenated CSS property (con trattino!), such as font-size, we need to put the property name in quotes in order to construct a valid JavaScript object.
 
 This example only used values stored in data, however computed properties can be used for v-bind:style and all of the other directives covered in this lesson in the same way.
 
@@ -522,3 +522,66 @@ const app = new Vue({
   }
 });
 ```
+
+However, this approach easily produces difficult-to-read code (Vue data property explodes)..
+
+### Classes
+
+```jsx
+// index.html
+<span v-bind:class="{ unread: hasNotifications }">Notifications</span>
+
+// style.css
+.unread {
+  background-color: blue;
+}
+
+// app.js
+const app = new Vue({
+  data: { notifications: [ ... ] },
+  computed: {
+    hasNotifications: function() {
+      return notifications.length > 0;
+    }
+  }
+})
+```
+
+In this example, we are using the v-bind:class directive to dynamically add a class called unread to a “Notifications” \<span> element if the computed property hasNotifications returns true.
+
+`v-bind:class` takes an object as its value : The keys of this object are class names and the values are Vue app properties that return a truthy or falsy value.
+
+Similar to before with v-bind:style, you can also set the value of v-bind:class to a Vue app property that returns a class object instead of writing the object out in your HTML file.
+
+### Class Arrays
+
+```jsx
+// index.html
+<span v-bind:class="[{ unread: hasNotifications }, menuItemClass]">Notifications</span>
+
+// app.js
+const app = new Vue({
+  data: { 
+    notifications: [ ... ],
+    menuItemClass: 'menu-item'
+  },
+  computed: {
+    hasNotifications: function() {
+      return notifications.length > 0;
+    }
+  }
+});
+
+// style.css
+.menu-item {
+  font-size: 12px;
+}
+ 
+.unread {
+  background-color: blue;
+}
+```
+
+The object at the beginning of the array will still conditionally add the unread class based on whether there are unread notifications. However, we now always add the class stored at menuItemClass, menu-item, to our “Notifications” element.
+
+Using an array with v-bind:class is useful for adding non-conditional classes, like the menu-item class above, in addition to our conditional classes. We can also use this array to add multiple class objects like we did with our inline style objects earlier in the lesson.

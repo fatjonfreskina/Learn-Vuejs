@@ -14,34 +14,21 @@
       <img class="logo" src="https://content.codecademy.com/courses/vue-instances/ticket_logo.svg" alt="logo">
       <h1>TICKETBOX</h1>
     </header>
-    
-    <!-- Developer Pane -->
-    <div id="developer-pane">
-      <h2>Developer Pane</h2>
-      <div><em>First Name</em>: <span>{{ firstName }}</span></div>
-      <div><em>Last Name</em>: <span>{{ lastName }}</span></div>
-      <div><em>Email</em>: <span>{{ email }}</span></div>
-      <div><em>Ticket Quantity</em>: <span>{{ ticketQuantity }}</span></div>
-      <div><em>Special Requests</em>: <span>{{ specialRequests }}</span></div>
-      <div><em>Referrals</em>: <span>{{ referrals }}</span></div>
-      <div><em>Purchase Agreement Signed</em>: <span>{{ purchaseAgreementSigned }}</span></div>
-    </div>
-    
-    <form @reset="resetFields" @submit.prevent="submitForm">
+    <form v-on:reset="resetFields" v-on:submit.prevent="submitForm">
       <div class="form-row">
         <div class="form-field">
           <label for="first-name">First Name</label>
-          <input type="text" id="first-name" v-model.trim="firstName"/>
+          <input type="text" id="first-name" v-model.trim="firstName" />
         </div>
         <div class="form-field">
           <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" v-model.trim="lastName"/>
+          <input type="text" id="last-name" v-model.trim="lastName" />
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
           <label for="email">Email</label>
-          <input type="text" id="email" v-model.trim="email"/>
+          <input type="text" id="email" v-model.trim="email" v-bind:class="[requiredFieldClass, emailClasses]"/>
         </div>
       </div>
       <div class="form-row">
@@ -97,11 +84,11 @@
       </div>
       <div class="form-row vertical">
         <label for="signature">Signature</label>
-        <input id="signature" class="signature" v-model="fullName"/>
+        <input id="signature" class="signature" />
       </div>
       <div>
         <button type="reset" class="reset">Reset</button>
-        <button type="submit" v-bind:disabled="!formIsValid">Confirm Tickets</button>
+        <button type="submit" v-bind:disabled="!formIsValid" v-bind:class="{ active: formIsValid }">Confirm Tickets</button>
       </div>
     </form>
   </div>
